@@ -9,18 +9,31 @@ import {
 } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 
+// Component Imports
 import Sidebar from "./components/Sidebar/Sidebar";
 import Dashboard from "./pages/Dashboard/Dashboard";
-// CORRECTION: Le chemin d'importation pour Login est corrigé.
 import Login from "./pages/Login/Login";
+import ProductivitePage from "./pages/Productivite/ProductivitePage";
+
+// CSS Imports
 import "./App.css";
 
 function App() {
   const { user } = useAuth();
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   const toggleTheme = () => {
     setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
+  };
+
+  const toggleSidebar = () => {
+    setIsSidebarCollapsed(!isSidebarCollapsed);
+  };
+
+  const toggleMobileNav = () => {
+    setIsMobileNavOpen(!isMobileNavOpen);
   };
 
   useEffect(() => {
@@ -30,9 +43,26 @@ function App() {
   }, [theme]);
 
   const MainLayout = ({ children }) => (
-    <div className="app-layout">
-      <Sidebar theme={theme} toggleTheme={toggleTheme} />
-      {children}
+    <div
+      className={`
+        app-layout 
+        ${isSidebarCollapsed ? "sidebar-collapsed" : ""}
+        ${isMobileNavOpen ? "mobile-nav-open" : ""}
+      `}
+    >
+      {isMobileNavOpen && (
+        <div className="mobile-overlay" onClick={toggleMobileNav}></div>
+      )}
+      <Sidebar
+        theme={theme}
+        toggleTheme={toggleTheme}
+        isCollapsed={isSidebarCollapsed}
+        toggleSidebar={toggleSidebar}
+        closeMobileNav={() => setIsMobileNavOpen(false)}
+        isMobileNavOpen={isMobileNavOpen}
+        openMobileNav={toggleMobileNav} // Ajout de la prop pour le bouton mobile
+      />
+      <div className="main-content">{children}</div>
     </div>
   );
 
@@ -41,11 +71,15 @@ function App() {
       <Routes>
         <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
         <Route
-          path="/"
+          path="/*"
           element={
             user ? (
               <MainLayout>
-                <Dashboard />
+                <Routes>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/productivite" element={<ProductivitePage />} />
+                  <Route path="*" element={<Navigate to="/" />} />
+                </Routes>
               </MainLayout>
             ) : (
               <Navigate to="/login" />

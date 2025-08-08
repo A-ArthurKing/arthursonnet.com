@@ -1,16 +1,48 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #f0f2f5;
+/* #region Mise en page de l'application */
+.app-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  transition: grid-template-columns 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* #endregion */
+
+/* #region Style de la sidebar repliée (uniquement sur grand écran) */
+@media (min-width: 769px) {
+  .app-layout.sidebar-collapsed {
+    grid-template-columns: 80px 1fr;
+  }
+}
+/* #endregion */
+
+/* #region Contenu principal */
+.main-content {
+  height: 100%;
+  overflow-y: auto;
+}
+/* #endregion */
+
+/* #region Overlay mobile */
+.mobile-overlay {
+  display: none;
 }
 
-.app-layout {
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
+@media (max-width: 768px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .app-layout.mobile-nav-open .mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    display: block;
+  }
 }
+/* #endregion */

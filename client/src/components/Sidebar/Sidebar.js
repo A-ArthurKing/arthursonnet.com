@@ -1,87 +1,115 @@
-import React, { useState, useEffect } from "react";
+// src/components/Sidebar/Sidebar.js
+
+import React from "react";
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTachometerAlt,
-  faStickyNote,
+  faTasks,
   faBookOpen,
+  faChevronLeft,
+  faBars,
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
-import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher"; // 1. Import du ThemeSwitcher
+import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 import "./Sidebar.css";
 
-// 2. Accepte 'theme' et 'toggleTheme' en props
-const Sidebar = ({ theme, toggleTheme }) => {
-  const [links, setLinks] = useState([]);
-  const [error, setError] = useState(null);
+// Définition statique des liens de navigation, remplaçant l'appel à l'API.
+const staticLinks = [
+  { id: 1, name: "Catégorie 1", color: "#6A5ACD" },
+  { id: 2, name: "Catégorie 2", color: "#00CED1" },
+  { id: 3, name: "Catégorie 3", color: "#FF8C00" },
+];
 
-  // ... le useEffect pour fetch les liens ne change pas ...
-  useEffect(() => {
-    fetch("http://localhost/arthursonnet.com/api/v1/categories/read.php")
-      .then((response) => {
-        if (!response.ok)
-          throw new Error("La réponse du réseau n'était pas ok");
-        return response.json();
-      })
-      .then((data) => {
-        if (data.records) setLinks(data.records);
-        else setLinks([]);
-      })
-      .catch((error) => {
-        console.error(
-          "Erreur lors de la récupération des liens de la sidebar:",
-          error
-        );
-        setError("Impossible de charger les catégories.");
-      });
-  }, []);
+const Sidebar = ({
+  theme,
+  toggleTheme,
+  isCollapsed,
+  toggleSidebar,
+  closeMobileNav,
+  isMobileNavOpen,
+  openMobileNav,
+}) => {
+  /**
+   * Ferme le menu mobile après un clic sur un lien.
+   * Cette fonction assure une meilleure expérience utilisateur.
+   */
+  const handleNavLinkClick = () => {
+    closeMobileNav();
+  };
+
+  /**
+   * Construit les classes CSS de la sidebar en fonction de l'état
+   * replié ou ouvert (mobile).
+   */
+  const sidebarClassName = `sidebar ${isCollapsed ? "collapsed" : ""} ${
+    isMobileNavOpen ? "mobile-open" : ""
+  }`;
 
   return (
-    <div className="sidebar">
-      <div>
-        {" "}
-        {/* Div pour regrouper le contenu principal */}
-        <div className="sidebar-header">
-          <h2>Mon SaaS</h2>
-        </div>
-        <nav className="sidebar-nav">
-          <ul>
-            {/* ... les li ne changent pas ... */}
-            <li>
-              <a href="#dashboard" className="active">
-                <FontAwesomeIcon
-                  icon={faTachometerAlt}
-                  className="sidebar-icon"
-                />
-                Dashboard
-              </a>
-            </li>
-            <li>
-              <a href="#notes">
-                <FontAwesomeIcon icon={faStickyNote} className="sidebar-icon" />
-                Notes
-              </a>
-            </li>
-            {error && <li className="error-message">{error}</li>}
-            {links.map((link) => (
-              <li key={link.id}>
-                <a href={`#category-${link.id}`}>
-                  <FontAwesomeIcon
-                    icon={faBookOpen}
-                    className="sidebar-icon"
-                    style={{ color: link.color }}
-                  />
-                  {link.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
+    <>
+      <div className={sidebarClassName}>
+        <div>
+          {/* #region En-tête */}
+          <div className="sidebar-header">
+            <span className="sidebar-title">Mon SaaS</span>
+            <button onClick={toggleSidebar} className="sidebar-toggle">
+              <FontAwesomeIcon icon={faChevronLeft} />
+            </button>
+          </div>
+          {/* #endregion */}
 
-      {/* 3. Placement du bouton en bas de la sidebar */}
-      <div className="sidebar-footer">
-        <ThemeSwitcher theme={theme} toggleTheme={toggleTheme} />
+          {/* #region Navigation */}
+          <nav className="sidebar-nav">
+            <ul>
+              <li>
+                <NavLink to="/" end onClick={handleNavLinkClick}>
+                  <FontAwesomeIcon
+                    icon={faTachometerAlt}
+                    className="sidebar-icon"
+                  />
+                  <span className="nav-text">Dashboard</span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/productivite" onClick={handleNavLinkClick}>
+                  <FontAwesomeIcon icon={faTasks} className="sidebar-icon" />
+                  <span className="nav-text">Productivité</span>
+                </NavLink>
+              </li>
+              {staticLinks.map((link) => (
+                <li key={link.id}>
+                  {/* Utilisation de l'icône faBookOpen pour les liens statiques */}
+                  <a href={`#category-${link.id}`} onClick={handleNavLinkClick}>
+                    <FontAwesomeIcon
+                      icon={faBookOpen}
+                      className="sidebar-icon"
+                      style={{ color: link.color }}
+                    />
+                    <span className="nav-text">{link.name}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          {/* #endregion */}
+        </div>
+
+        {/* #region Pied de page */}
+        <div className="sidebar-footer">
+          <ThemeSwitcher theme={theme} toggleTheme={toggleTheme} />
+        </div>
+        {/* #endregion */}
       </div>
-    </div>
+      {/* #region Bouton de menu mobile */}
+      <button
+        onClick={isMobileNavOpen ? closeMobileNav : openMobileNav}
+        className={`mobile-toggle-button ${isMobileNavOpen ? "open" : ""}`}
+      >
+        <FontAwesomeIcon icon={isMobileNavOpen ? faTimes : faBars} />
+      </button>
+      {/* #endregion */}
+    </>
   );
 };
 

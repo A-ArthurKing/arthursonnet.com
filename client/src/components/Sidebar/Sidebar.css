@@ -1,31 +1,57 @@
-/* --- Structure principale --- */
+/* src/components/Sidebar/Sidebar.css */
+
+/* #region Structure principale de la sidebar */
 .sidebar {
-  width: 260px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100vh;
+  z-index: 1000;
   background-color: var(--sidebar-background);
   color: var(--sidebar-text);
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Ligne déplacée ici */
-  flex-shrink: 0;
+  justify-content: space-between;
   border-right: 1px solid var(--sidebar-border);
-  transition: width var(--transition-speed);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+/* #endregion */
 
-/* --- En-tête --- */
+/* #region En-tête */
 .sidebar-header {
   padding: 20px;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-bottom: 1px solid var(--sidebar-border);
+  overflow: hidden;
 }
 
-.sidebar-header h2 {
-  margin: 0;
+.sidebar-title {
   font-size: 1.5rem;
   color: var(--sidebar-text-active);
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
-/* --- Navigation --- */
+.sidebar-toggle {
+  background: none;
+  border: none;
+  color: var(--sidebar-text);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.3s ease;
+}
+.sidebar-toggle:hover {
+  color: var(--sidebar-text-active);
+}
+/* #endregion */
+
+/* #region Navigation */
 .sidebar-nav ul {
   list-style-type: none;
   padding: 0;
@@ -38,49 +64,144 @@
   padding: 12px 20px;
   text-decoration: none;
   color: var(--sidebar-text);
-  font-size: 1rem;
+  white-space: nowrap;
   transition: background-color var(--transition-speed),
     color var(--transition-speed);
 }
-
-/* --- États des liens --- */
 .sidebar-nav li a:hover {
   background-color: var(--sidebar-hover-bg);
   color: var(--sidebar-text-active);
 }
-
 .sidebar-nav li a.active {
   background-color: var(--sidebar-hover-bg);
   color: var(--sidebar-text-active);
   font-weight: 600;
 }
-
 .sidebar-nav li a.active .sidebar-icon {
   color: var(--sidebar-icon-active-color);
 }
 
-/* --- Messages d'erreur --- */
-.error-message {
-  color: var(--accent-danger);
-  padding: 10px 20px;
-  font-style: italic;
-  font-size: 0.9rem;
+.nav-text {
+  opacity: 1;
+  transition: opacity 0.2s 0.1s ease;
+  margin-left: 12px;
 }
 
-/* --- Icônes --- */
 .sidebar-icon {
-  margin-right: 12px;
   font-size: 1.1em;
   width: 20px;
   text-align: center;
   color: var(--sidebar-icon-color);
   transition: color var(--transition-speed);
+  flex-shrink: 0;
 }
+/* #endregion */
 
-/* --- Pied de page de la Sidebar --- */
+/* #region Styles de la Sidebar Pliée (Ordinateur) */
+@media (min-width: 769px) {
+  .sidebar.collapsed {
+    width: 80px;
+  }
+  .sidebar.collapsed .sidebar-title,
+  .sidebar.collapsed .nav-text {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    transition: opacity 0.1s ease, width 0.3s ease;
+  }
+  .sidebar.collapsed .sidebar-toggle {
+    transform: rotate(180deg);
+  }
+  .sidebar.collapsed .sidebar-nav li a {
+    justify-content: center;
+    padding: 12px 0;
+  }
+  .sidebar.collapsed .sidebar-header {
+    justify-content: center;
+  }
+}
+/* #endregion */
+
+/* #region Pied de page */
 .sidebar-footer {
   padding: 20px;
   display: flex;
-  justify-content: center; /* Centre le bouton */
+  justify-content: center;
   border-top: 1px solid var(--sidebar-border);
 }
+/* #endregion */
+
+/* #region VUE MOBILE */
+@media (max-width: 768px) {
+  /* On cache la sidebar par défaut sur mobile et on la fait glisser */
+  .sidebar {
+    width: 250px;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.2);
+    padding-top: 64px; /* Ajout d'un padding pour éviter le chevauchement avec le bouton */
+  }
+
+  /* Afficher la sidebar quand la classe .mobile-open est active */
+  .sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  /* Cacher le bouton de pliage desktop */
+  .sidebar-toggle {
+    display: none;
+  }
+
+  /* Afficher le bouton pour le menu hamburger sur mobile */
+  .mobile-toggle-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-surface);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+    width: 44px;
+    height: 44px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1.2rem;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* Masquer le bouton sur les grands écrans */
+  @media (min-width: 769px) {
+    .mobile-toggle-button {
+      display: none;
+    }
+  }
+
+  /* Rendre le bouton visible uniquement sur mobile */
+  .mobile-toggle-button {
+    display: flex;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease-in-out;
+  }
+  .mobile-toggle-button.open {
+    transform: rotate(90deg);
+  }
+
+  /* Rendre le texte toujours visible sur mobile */
+  .sidebar-title,
+  .nav-text {
+    opacity: 1;
+    width: auto;
+    overflow: visible;
+  }
+  .sidebar.mobile-open .sidebar-nav li a.active .sidebar-title {
+    text-decoration: none;
+  }
+
+  .sidebar-header {
+    justify-content: space-between;
+  }
+}
+/* #endregion */

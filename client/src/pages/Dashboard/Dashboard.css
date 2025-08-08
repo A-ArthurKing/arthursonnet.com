@@ -1,74 +1,56 @@
-/* --- Conteneur principal --- */
-.main-container {
-  flex-grow: 1;
-  overflow-y: auto;
-  background-color: var(--color-background);
-  padding: 25px;
+/* src/pages/Dashboard/Dashboard.css */
+
+.dashboard-page {
+  padding: 20px;
+  height: 100%;
 }
 
-/* --- En-tête de page --- */
-.main-header {
-  margin-bottom: 25px;
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.main-header h1 {
-  margin: 0;
-  color: var(--color-text-primary);
-}
-
-.main-header p {
-  margin: 5px 0 0;
-  color: var(--color-text-secondary);
-}
-
-/* --- Zone de contenu --- */
-.content-area h2 {
-  color: var(--color-text-primary);
+.dashboard-header {
   margin-bottom: 20px;
 }
 
-/* --- Grille des notes --- */
-.notes-grid {
+.dashboard-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* --- C'est ici que la magie opère --- */
+.dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  gap: 20px; /* L'espacement entre les cartes */
+
+  /* * La ligne la plus importante !
+   * auto-fit : Crée autant de colonnes que possible.
+   * minmax(300px, 1fr) : Chaque colonne doit faire au minimum 300px. 
+   * Si l'espace le permet, elle s'étire pour remplir l'espace (1fr).
+   * Quand l'espace est insuffisant pour maintenir les 300px, 
+   * une colonne passe automatiquement à la ligne suivante.
+  */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
-/* --- Carte de note individuelle --- */
-.note-card {
+.dashboard-card {
   background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
-  padding: 20px;
   box-shadow: var(--box-shadow);
-  transition: transform var(--transition-speed),
-    box-shadow var(--transition-speed);
+  padding: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.note-card:hover {
+.dashboard-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.note-card h3 {
-  margin: 0 0 10px 0;
-  font-size: 1.1rem;
-  color: var(--accent-primary);
+.dashboard-card h2 {
+  margin-top: 0;
+  font-size: 1.25rem;
+  color: var(--color-text-primary);
 }
 
-.note-card p {
-  margin: 0 0 15px 0;
+.dashboard-card p {
   color: var(--color-text-secondary);
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-
-.note-card small {
-  color: var(--color-text-secondary);
-  opacity: 0.8;
-  font-size: 0.8rem;
 }
