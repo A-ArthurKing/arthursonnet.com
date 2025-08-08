@@ -1,0 +1,86 @@
+/* --- Structure principale --- */
+.sidebar {
+  width: 260px;
+  background-color: var(--sidebar-background);
+  color: var(--sidebar-text);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ligne déplacée ici */
+  flex-shrink: 0;
+  border-right: 1px solid var(--sidebar-border);
+  transition: width var(--transition-speed);
+}
+
+/* --- En-tête --- */
+.sidebar-header {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--sidebar-border);
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--sidebar-text-active);
+}
+
+/* --- Navigation --- */
+.sidebar-nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.sidebar-nav li a {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: var(--sidebar-text);
+  font-size: 1rem;
+  transition: background-color var(--transition-speed),
+    color var(--transition-speed);
+}
+
+/* --- États des liens --- */
+.sidebar-nav li a:hover {
+  background-color: var(--sidebar-hover-bg);
+  color: var(--sidebar-text-active);
+}
+
+.sidebar-nav li a.active {
+  background-color: var(--sidebar-hover-bg);
+  color: var(--sidebar-text-active);
+  font-weight: 600;
+}
+
+.sidebar-nav li a.active .sidebar-icon {
+  color: var(--sidebar-icon-active-color);
+}
+
+/* --- Messages d'erreur --- */
+.error-message {
+  color: var(--accent-danger);
+  padding: 10px 20px;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* --- Icônes --- */
+.sidebar-icon {
+  margin-right: 12px;
+  font-size: 1.1em;
+  width: 20px;
+  text-align: center;
+  color: var(--sidebar-icon-color);
+  transition: color var(--transition-speed);
+}
+
+/* --- Pied de page de la Sidebar --- */
+.sidebar-footer {
+  padding: 20px;
+  display: flex;
+  justify-content: center; /* Centre le bouton */
+  border-top: 1px solid var(--sidebar-border);
+}

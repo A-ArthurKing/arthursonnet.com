@@ -1,0 +1,37 @@
+Pour pouvoir conserver une hiérarchie visuelle sur toutes les pages et garantir une expérience utilisateur cohérente et professionnelle, cette charte graphique doit être respectée.
+
+---
+## ## 1. Typographie ✒️
+
+La typographie est choisie pour sa **clarté** et sa **lisibilité**. Une police de caractères unique et moderne est utilisée pour l'ensemble de l'application afin de créer une identité visuelle forte.
+
+La hiérarchie est établie par la taille et la graisse des textes :
+* **Les titres principaux (H1, H2)** sont larges et gras pour structurer clairement le contenu et guider le regard.
+* **Les sous-titres (H3)** sont légèrement plus discrets pour organiser les sections à l'intérieur d'un même bloc.
+* **Le corps de texte** est d'une taille confortable pour la lecture prolongée.
+* **Les textes secondaires** (labels, aides) sont plus petits et d'une couleur moins prononcée pour fournir des informations contextuelles sans distraire.
+
+---
+## ## 2. Palette de Couleurs 🎨
+
+La palette de couleurs est conçue pour être **sobre, professionnelle et accessible**, avec des touches de couleur vives pour les actions importantes.
+
+* **Couleurs Primaires (Accents) :** Une couleur principale, typiquement un **bleu vif**, est utilisée pour tous les éléments interactifs (boutons, liens, icônes actives). C'est la couleur signature de l'application qui attire l'attention de l'utilisateur sur les actions possibles.
+* **Couleurs Neutres :** L'interface repose sur une base de couleurs neutres pour ne pas surcharger l'utilisateur.
+    * **Thème Clair :** Utilise des tons de **gris clair** et de **blanc** pour créer une interface aérée, lumineuse et facile à lire.
+    * **Thème Sombre :** Utilise des **gris foncés** et des tons **bleu nuit** pour réduire la fatigue visuelle dans des conditions de faible luminosité.
+* **Couleurs d'État :** Des couleurs universelles sont utilisées pour communiquer l'état d'une action : le **vert pour le succès** et le **rouge pour les erreurs**.
+
+---
+## ## 3. Espacement et Grille 📐
+
+Un système d'espacement cohérent est appliqué sur toute l'interface pour garantir que le design **respire** et que les éléments sont organisés de manière logique et prévisible. Chaque espacement (marges, paddings) est un multiple d'une unité de base, créant un rythme visuel harmonieux.
+
+---
+## ## 4. Composants et États 🔘
+
+Les éléments interactifs partagent un style commun et des états visuels clairs pour une expérience utilisateur intuitive.
+
+* **Cartes :** Les informations sont regroupées dans des cartes aux **coins arrondis** avec une **ombre subtile**, leur donnant de la profondeur et les détachant de l'arrière-plan.
+* **Boutons :** Ils sont facilement identifiables grâce à la couleur d'accent. Leur apparence change visiblement au **survol de la souris** pour confirmer qu'ils sont cliquables. Un bouton non disponible est grisé.
+* **Champs de saisie :** Lorsqu'un champ est sélectionné, il est mis en évidence par une **bordure de couleur vive** pour guider l'utilisateur.

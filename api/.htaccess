@@ -1,0 +1,19 @@
+# --- Fichier .htaccess Définitive ---
+
+Options -Indexes
+RewriteEngine On
+
+# --- GESTION COMPLÈTE DU CORS ---
+
+<IfModule mod_headers.c>
+    # CORRECTION: Le port est maintenant 3000
+    Header set Access-Control-Allow-Origin "http://localhost:3000"
+    Header set Access-Control-Allow-Credentials "true"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+</IfModule>
+
+# --- Gère la requête "preflight" OPTIONS ---
+
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule .\* - [R=204,L]

@@ -1,0 +1,7 @@
+Pour lancer le projet après un redémarage ou une nouvelle configuration il faut:
+    Lancer l'Application Frontend :
+        Naviguez jusqu'au dossier de votre application React avec la commande cd example : cd C:\wamp64\www\arthursonnet.com\client 
+    Une fois dans le dossier client, lancez le serveur de développement :
+        ( npm start )
+
+

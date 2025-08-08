@@ -1,0 +1,197 @@
+/* src/pages/Login/Login.css */
+
+/* --- Réinitialisation et prévention du débordement --- */
+*,
+*::before,
+*::after {
+  /* CORRECTION: Assure que le padding et la bordure sont inclus dans la largeur/hauteur totale */
+  box-sizing: border-box;
+}
+
+/* --- Structure générale de la page --- */
+.login-page {
+  display: flex;
+  width: 100%; /* Plus stable que 100vw */
+  min-height: 100vh;
+  /* CORRECTION: Empêche tout débordement, notamment horizontal */
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--color-background);
+}
+
+/* --- Panneau de gauche --- */
+.login-promo-panel {
+  width: 60%;
+  background: linear-gradient(135deg, #1a1d24 0%, #273142 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  text-align: center;
+}
+
+.promo-content {
+  max-width: 450px;
+}
+
+.promo-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.promo-content p {
+  font-size: 1.1rem;
+  color: var(--sidebar-text);
+  line-height: 1.6;
+}
+
+/* --- Panneau de droite --- */
+.login-form-panel {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem; /* Ajout d'un padding pour l'aération */
+}
+
+.login-form-container {
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+}
+
+.login-form-container h1 {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: var(--color-text-primary);
+}
+
+/* --- Carte du formulaire --- */
+.login-card {
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius);
+  padding: 2.5rem;
+  box-shadow: var(--box-shadow);
+  text-align: left;
+}
+
+/* --- Champs de formulaire --- */
+.input-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon svg {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-secondary);
+  opacity: 0.5;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 14px 14px 45px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  transition: border-color var(--transition-speed);
+  /* box-sizing est maintenant géré globalement */
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+}
+
+/* --- Bouton principal --- */
+.login-button {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: var(--border-radius);
+  background-color: var(--accent-primary);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  box-shadow: 0 4px 15px rgba(30, 144, 255, 0.3);
+  margin-top: 1rem;
+}
+
+.login-button:hover {
+  background-color: var(--accent-primary-hover);
+  transform: translateY(-2px);
+}
+
+.login-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* --- Message d'erreur --- */
+.error-message {
+  color: var(--accent-danger);
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* --- Responsive --- */
+@media (max-width: 850px) {
+  .login-page {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+    /* La propriété overflow:hidden n'est plus nécessaire ici grâce au reset global */
+  }
+
+  .login-promo-panel,
+  .login-form-panel {
+    width: 100%;
+    height: auto;
+    padding: 3rem 1.5rem;
+  }
+
+  .promo-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .login-form-panel {
+    justify-content: flex-start;
+    padding-top: 2rem;
+  }
+
+  .login-form-container {
+    max-width: 100%;
+  }
+
+  .login-form-container h1 {
+    font-size: 1.8rem;
+  }
+
+  .login-card {
+    box-shadow: none;
+    padding: 0;
+    background-color: transparent;
+  }
+}

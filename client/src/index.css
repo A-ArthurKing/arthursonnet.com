@@ -1,0 +1,52 @@
+/* --- Thème Global & Variables de Design --- */
+:root {
+  /* Palette principale */
+  --accent-primary: #1e90ff;
+  --accent-primary-hover: #0073e6;
+  --accent-danger: #ff4d4d;
+  --accent-success: #4caf50;
+
+  /* Thème Clair (défaut) */
+  --color-background: #f4f6f9;
+  --color-surface: #ffffff;
+  --color-border: #e0e0e0;
+  --color-text-primary: #1d2129;
+  --color-text-secondary: #606770;
+
+  /* --- Thème Sombre --- */
+  body.dark-theme {
+    /* Redéfinition des variables pour le mode sombre */
+    --color-background: #1a1d24;
+    --color-surface: #273142;
+    --color-border: #3a4454;
+    --color-text-primary: #f0f0f0;
+    --color-text-secondary: #a0a0a0;
+  }
+
+  /* Spécifiques à la Sidebar (thème sombre persistant) */
+  --sidebar-background: #1a1d24;
+  --sidebar-border: #2d313a;
+  --sidebar-text: #b0b3b8;
+  --sidebar-text-active: #ffffff;
+  --sidebar-hover-bg: #2c3038;
+  --sidebar-icon-color: #7a828e;
+  --sidebar-icon-active-color: var(--accent-primary);
+
+  /* Propriétés de design */
+  --border-radius: 8px;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --transition-speed: 0.2s ease;
+}
+
+/* --- Styles de base --- */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}

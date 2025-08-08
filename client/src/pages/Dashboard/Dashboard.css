@@ -1,0 +1,74 @@
+/* --- Conteneur principal --- */
+.main-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  background-color: var(--color-background);
+  padding: 25px;
+}
+
+/* --- En-tête de page --- */
+.main-header {
+  margin-bottom: 25px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-header h1 {
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+.main-header p {
+  margin: 5px 0 0;
+  color: var(--color-text-secondary);
+}
+
+/* --- Zone de contenu --- */
+.content-area h2 {
+  color: var(--color-text-primary);
+  margin-bottom: 20px;
+}
+
+/* --- Grille des notes --- */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* --- Carte de note individuelle --- */
+.note-card {
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  box-shadow: var(--box-shadow);
+  transition: transform var(--transition-speed),
+    box-shadow var(--transition-speed);
+}
+
+.note-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.note-card h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.1rem;
+  color: var(--accent-primary);
+}
+
+.note-card p {
+  margin: 0 0 15px 0;
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.note-card small {
+  color: var(--color-text-secondary);
+  opacity: 0.8;
+  font-size: 0.8rem;
+}
