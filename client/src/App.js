@@ -14,6 +14,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Login from "./pages/Login/Login";
 import ProductivitePage from "./pages/Productivite/ProductivitePage";
+import NotesPage from "./pages/Productivite/NotesPage";
 
 // CSS Imports
 import "./App.css";
@@ -60,7 +61,7 @@ function App() {
         toggleSidebar={toggleSidebar}
         closeMobileNav={() => setIsMobileNavOpen(false)}
         isMobileNavOpen={isMobileNavOpen}
-        openMobileNav={toggleMobileNav} // Ajout de la prop pour le bouton mobile
+        openMobileNav={toggleMobileNav}
       />
       <div className="main-content">{children}</div>
     </div>
@@ -78,6 +79,12 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Dashboard />} />
                   <Route path="/productivite" element={<ProductivitePage />} />
+                  <Route path="/productivite/notes" element={<NotesPage />} />
+                  {/* AJOUT DE LA NOUVELLE ROUTE POUR LES NOTES ARCHIVÉES */}
+                  <Route
+                    path="/productivite/notes/archives"
+                    element={<NotesPage />}
+                  />
                   <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
               </MainLayout>

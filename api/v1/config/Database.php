@@ -1,9 +1,6 @@
 <?php
 // /api/v1/config/Database.php
 
-/**
- * Classe de configuration et de connexion unifiée et autonome.
- */
 class Database
 {
     private $host;
@@ -14,8 +11,6 @@ class Database
 
     public static function bootstrap()
     {
-        // --- Gestion du CORS ---
-        // !! VÉRIFIEZ CE PORT !! Doit correspondre à celui de votre app React (ex: 3000, 3001).
         $allowed_origin = 'http://localhost:3000';
 
         header("Access-Control-Allow-Origin: " . $allowed_origin);
@@ -29,7 +24,6 @@ class Database
             exit();
         }
 
-        // --- Configuration du rapport d'erreurs ---
         if (self::isDevEnvironment()) {
             ini_set('display_errors', 1);
             ini_set('display_startup_errors', 1);
@@ -41,9 +35,6 @@ class Database
         }
     }
 
-    /**
-     * Le constructeur charge les identifiants de base de données.
-     */
     public function __construct()
     {
         if (self::isDevEnvironment()) {
@@ -59,16 +50,14 @@ class Database
         }
     }
 
-    /**
-     * Crée et retourne une connexion PDO.
-     */
     public function getConnection()
     {
         $this->conn = null;
         try {
-            $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name . ';charset=utf8';
+            $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name . ';charset=utf8mb4';
             $this->conn = new PDO($dsn, $this->username, $this->password);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->conn->exec("set names utf8mb4");
         } catch (PDOException $exception) {
             http_response_code(500);
             echo json_encode(['status' => 'error', 'message' => 'Erreur de connexion à la base de données.']);
@@ -77,10 +66,6 @@ class Database
         return $this->conn;
     }
 
-    /**
-     * Méthode privée pour vérifier l'environnement.
-     * @return bool
-     */
     private static function isDevEnvironment()
     {
         if (!isset($_SERVER['SERVER_NAME'])) return false;

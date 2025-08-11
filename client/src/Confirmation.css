@@ -1,0 +1,87 @@
+/* src/components/Confirmation.css */
+
+.confirmation {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 15px 20px;
+  border-radius: var(--border-radius);
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  opacity: 0;
+  transform: translateY(100px);
+  animation: slideIn 0.5s forwards;
+}
+
+.confirmation.success {
+  background-color: var(--accent-success);
+}
+
+.confirmation.error {
+  background-color: var(--accent-danger);
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.confirmation-icon {
+  font-size: 1.2rem;
+}
+
+.confirmation-message {
+  flex-grow: 1;
+}
+
+.confirmation-close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.confirmation-close-btn:hover {
+  opacity: 1;
+}
+
+.confirmation-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  align-self: flex-end;
+}
+
+.btn-cancel,
+.btn-confirm {
+  padding: 8px 12px;
+  border: 1px solid white;
+  border-radius: var(--border-radius);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background: none;
+}
+
+.btn-confirm {
+  background-color: white;
+  color: var(--accent-danger);
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

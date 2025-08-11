@@ -1,6 +1,7 @@
 // ProductivitePage.js
 
 import React from "react";
+import { Link } from "react-router-dom";
 import "./ProductivitePage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -58,8 +59,8 @@ const ProductivitePage = () => {
           </p>
         </div>
 
-        {/* Carte pour les Notes */}
-        <div className="card">
+        {/* Carte pour les Notes (rendue cliquable) */}
+        <Link to="/productivite/notes" className="card">
           <div className="card-header">
             <div
               className="icon-wrapper"
@@ -75,7 +76,7 @@ const ProductivitePage = () => {
           <p className="card-content">
             Capturez rapidement vos idées, mémos et inspirations du moment.
           </p>
-        </div>
+        </Link>
       </div>
     </main>
   );

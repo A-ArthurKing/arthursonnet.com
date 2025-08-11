@@ -1,52 +1,98 @@
 /* --- Thème Global & Variables de Design --- */
 :root {
   /* Palette principale */
-  --accent-primary: #1e90ff;
-  --accent-primary-hover: #0073e6;
-  --accent-danger: #ff4d4d;
-  --accent-success: #4caf50;
+  --accent-primary: #3498db;
+  --accent-primary-hover: #2980b9;
+  --accent-danger: #e74c3c;
+  --accent-success: #2ecc71;
 
   /* Thème Clair (défaut) */
-  --color-background: #f4f6f9;
+  --color-background: #f4f7f9;
   --color-surface: #ffffff;
-  --color-border: #e0e0e0;
-  --color-text-primary: #1d2129;
-  --color-text-secondary: #606770;
+  --color-border: #e0e6ed;
+  --color-text-primary: #2c3e50;
+  --color-text-secondary: #7f8c8d;
 
   /* --- Thème Sombre --- */
   body.dark-theme {
-    /* Redéfinition des variables pour le mode sombre */
-    --color-background: #1a1d24;
-    --color-surface: #273142;
-    --color-border: #3a4454;
-    --color-text-primary: #f0f0f0;
-    --color-text-secondary: #a0a0a0;
+    --color-background: #1e272e;
+    --color-surface: #2f3640;
+    --color-border: #4a545e;
+    --color-text-primary: #ecf0f1;
+    --color-text-secondary: #bdc3c7;
   }
 
-  /* Spécifiques à la Sidebar (thème sombre persistant) */
-  --sidebar-background: #1a1d24;
-  --sidebar-border: #2d313a;
-  --sidebar-text: #b0b3b8;
+  /* Spécifiques à la Sidebar */
+  --sidebar-background: #2f3640;
+  --sidebar-border: #4a545e;
+  --sidebar-text: #bdc3c7;
   --sidebar-text-active: #ffffff;
-  --sidebar-hover-bg: #2c3038;
-  --sidebar-icon-color: #7a828e;
+  --sidebar-hover-bg: #4a545e;
+  --sidebar-icon-color: #bdc3c7;
   --sidebar-icon-active-color: var(--accent-primary);
 
   /* Propriétés de design */
-  --border-radius: 8px;
-  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --transition-speed: 0.2s ease;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  --transition-speed: 0.3s ease;
 }
 
 /* --- Styles de base --- */
+* {
+  box-sizing: border-box; /* Pour une meilleure gestion des marges et du padding */
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Inter", sans-serif, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   background-color: var(--color-background);
   color: var(--color-text-primary);
+  transition: background-color var(--transition-speed),
+    color var(--transition-speed);
 }
+
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+
+a:hover {
+  color: var(--accent-primary-hover);
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* * Pour les icônes Font Awesome, ajoutez la ligne suivante
+ * si vous utilisez un CDN ou un package npm:
+ *
+ * @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+ * ou
+ * @import url('~@fortawesome/fontawesome-free/css/all.min.css');
+ */
