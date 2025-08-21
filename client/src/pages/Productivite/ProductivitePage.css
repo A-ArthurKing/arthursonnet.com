@@ -1,107 +1,75 @@
-/* ProductivitePage.css */
-
-/* #region Page principale et en-tête */
-.productivity-page {
-  padding: 40px;
-  width: 100%;
-  box-sizing: border-box;
-  overflow-y: auto;
-  background-color: var(--color-background);
-  transition: background-color var(--transition-speed);
-}
-
-.page-header {
-  margin-bottom: 40px;
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: 20px;
-}
-
-.page-header h1 {
-  margin: 0;
-  font-size: 2rem;
-  color: var(--color-text-primary);
-}
-
-.page-header p {
-  font-size: 1.1rem;
-  color: var(--color-text-secondary);
-  margin-top: 8px;
-}
-/* #endregion */
-
-/* #region Conteneur de cartes */
-.card-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 24px;
-}
-
-.card {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius);
-  padding: 24px;
-  box-shadow: var(--box-shadow);
+.productivite-page-container {
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 2rem;
+  height: 100%;
+  overflow-y: auto;
+  color: var(
+    --text-dark
+  ); /* Utilisation de la variable pour la couleur du texte */
+}
+
+.productivite-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.productivite-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.productivite-header p {
+  color: var(
+    --text-secondary
+  ); /* Utilisation de la variable pour le texte secondaire */
+}
+
+.productivite-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 0 1rem;
+  width: 100%;
+  max-width: 900px; /* Limite la largeur pour une meilleure lisibilité */
+  margin: 0 auto;
+}
+
+.productivite-card {
+  background-color: var(
+    --background-dark
+  ); /* Utilisation de la variable pour l'arrière-plan */
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px solid var(--border-color); /* Bordure sobre */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.2s ease;
   cursor: pointer;
-  text-decoration: none;
-  color: inherit;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+.productivite-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée au survol */
+  background-color: var(--card-hover-bg); /* Couleur de survol */
 }
 
-.card-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 16px;
+.card-icon-container {
+  font-size: 2.5rem;
+  color: var(
+    --color-primary
+  ); /* Utilisation de la variable pour la couleur principale */
+  margin-bottom: 1rem;
 }
 
-.icon-wrapper {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 16px;
-  font-size: 1.2rem;
+.productivite-card .card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
-.card-header h2 {
-  margin: 0;
-  font-size: 1.25rem;
-  color: var(--color-text-primary);
+.productivite-card .card-description {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
 }
-
-.card-content {
-  color: var(--color-text-secondary);
-  line-height: 1.6;
-  flex-grow: 1;
-}
-/* #endregion */
-
-/* #region Responsive Design */
-@media (max-width: 768px) {
-  .productivity-page {
-    padding: 20px;
-  }
-
-  .page-header h1 {
-    font-size: 1.5rem;
-  }
-
-  .card-container {
-    gap: 16px;
-  }
-
-  .card {
-    padding: 20px;
-  }
-}
-/* #endregion */

@@ -1,29 +1,27 @@
-// src/pages/Login/Login.js
-
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
+import { useNotification } from "../../App"; // Correction de l'importation
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 import "./Login.css";
 
-/**
- * Page de connexion de l'application.
- */
 const Login = () => {
+  // #region État et Hooks
   const { login } = useAuth();
+  const { showNotification } = useNotification(); // Utilisation du hook de notification
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  // #endregion
 
-  // Gestion de la soumission du formulaire
+  // #region Logique du formulaire
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
     setError("");
 
     try {
-      // Rétablissement de l'URL de l'API d'authentification.
       const response = await fetch(
         "http://localhost/arthursonnet.com/api/v1/auth/login.php",
         {
@@ -37,6 +35,7 @@ const Login = () => {
 
       if (response.ok && result.status === "success") {
         login(result.user);
+        showNotification("Connexion réussie !", "success");
       } else {
         setError(result.message || "Une erreur est survenue.");
       }
@@ -46,7 +45,9 @@ const Login = () => {
       setIsLoading(false);
     }
   };
+  // #endregion
 
+  // #region Rendu
   return (
     <div className="login-page">
       <div className="login-promo-panel">
@@ -55,7 +56,6 @@ const Login = () => {
           <p>Votre tableau de bord personnel pour une vie optimisée.</p>
         </div>
       </div>
-
       <div className="login-form-panel">
         <form
           className="login-form-container"
@@ -93,7 +93,6 @@ const Login = () => {
               </div>
             </div>
             {error && <p className="error-message">{error}</p>}
-
             <button type="submit" className="login-button" disabled={isLoading}>
               {isLoading ? "Connexion..." : "Entrer"}
             </button>
@@ -102,6 +101,7 @@ const Login = () => {
       </div>
     </div>
   );
+  // #endregion
 };
 
 export default Login;

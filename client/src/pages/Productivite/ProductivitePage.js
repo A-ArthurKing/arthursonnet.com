@@ -1,83 +1,61 @@
-// ProductivitePage.js
-
 import React from "react";
-import { Link } from "react-router-dom";
-import "./ProductivitePage.css";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBullseye,
-  faListCheck,
+  faTasks,
   faStickyNote,
+  faBullseye,
 } from "@fortawesome/free-solid-svg-icons";
+import "./ProductivitePage.css";
 
 const ProductivitePage = () => {
+  const navigate = useNavigate();
+
+  const cards = [
+    {
+      title: "Notes",
+      description: "Gérez vos notes et archives personnelles.",
+      icon: faStickyNote,
+      path: "/productivite/notes",
+    },
+    {
+      title: "Tâches",
+      description: "Organisez vos tâches avec des niveaux d’urgence.",
+      icon: faTasks,
+      path: "/productivite/tasks",
+    },
+    {
+      title: "Objectifs",
+      description:
+        "Suivez la progression de vos objectifs financiers et de vie.",
+      icon: faBullseye,
+      path: "/productivite/goals",
+    },
+  ];
+
   return (
-    <main className="productivity-page">
-      <header className="page-header">
-        <h1>Espace Productivité</h1>
-        <p>Gérez vos objectifs, vos tâches et vos notes en un seul endroit.</p>
+    <main className="productivite-page-container">
+      <header className="productivite-header">
+        <h1>Productivité</h1>
+        <p>
+          Gérez vos différents aspects de productivité depuis un seul endroit.
+        </p>
       </header>
-
-      <div className="card-container">
-        {/* Carte pour les Objectifs */}
-        <div className="card">
-          <div className="card-header">
-            <div
-              className="icon-wrapper"
-              style={{
-                backgroundColor: "rgba(255, 99, 132, 0.2)",
-                color: "rgb(255, 99, 132)",
-              }}
-            >
-              <FontAwesomeIcon icon={faBullseye} />
+      <section className="productivite-cards-grid">
+        {cards.map((card) => (
+          <div
+            key={card.title}
+            className="productivite-card"
+            onClick={() => navigate(card.path)}
+          >
+            <div className="card-icon-container">
+              <FontAwesomeIcon icon={card.icon} />
             </div>
-            <h2>Objectifs</h2>
+            <h2 className="card-title">{card.title}</h2>
+            <p className="card-description">{card.description}</p>
           </div>
-          <p className="card-content">
-            Définissez et suivez vos objectifs à long terme pour atteindre vos
-            ambitions.
-          </p>
-        </div>
-
-        {/* Carte pour les Tâches */}
-        <div className="card">
-          <div className="card-header">
-            <div
-              className="icon-wrapper"
-              style={{
-                backgroundColor: "rgba(54, 162, 235, 0.2)",
-                color: "rgb(54, 162, 235)",
-              }}
-            >
-              <FontAwesomeIcon icon={faListCheck} />
-            </div>
-            <h2>Tâches</h2>
-          </div>
-          <p className="card-content">
-            Organisez votre quotidien avec une liste de tâches claire et
-            hiérarchisée.
-          </p>
-        </div>
-
-        {/* Carte pour les Notes (rendue cliquable) */}
-        <Link to="/productivite/notes" className="card">
-          <div className="card-header">
-            <div
-              className="icon-wrapper"
-              style={{
-                backgroundColor: "rgba(255, 206, 86, 0.2)",
-                color: "rgb(255, 206, 86)",
-              }}
-            >
-              <FontAwesomeIcon icon={faStickyNote} />
-            </div>
-            <h2>Notes</h2>
-          </div>
-          <p className="card-content">
-            Capturez rapidement vos idées, mémos et inspirations du moment.
-          </p>
-        </Link>
-      </div>
+        ))}
+      </section>
     </main>
   );
 };

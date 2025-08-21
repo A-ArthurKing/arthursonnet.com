@@ -1,87 +1,39 @@
-/* src/components/Confirmation.css */
-
-.confirmation {
+/* #region NOTIFICATIONS */
+.notification-popup {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  padding: 15px 20px;
-  border-radius: var(--border-radius);
-  color: white;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 600;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  z-index: 2000;
+  padding: 12px 20px;
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--box-shadow);
   opacity: 0;
-  transform: translateY(100px);
-  animation: slideIn 0.5s forwards;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
 }
 
-.confirmation.success {
-  background-color: var(--accent-success);
-}
-
-.confirmation.error {
-  background-color: var(--accent-danger);
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.confirmation-icon {
-  font-size: 1.2rem;
-}
-
-.confirmation-message {
-  flex-grow: 1;
-}
-
-.confirmation-close-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
-}
-
-.confirmation-close-btn:hover {
+.notification-popup.visible {
   opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
-.confirmation-buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-  align-self: flex-end;
+.notification-popup.success {
+  background-color: var(
+    --accent-success
+  ); /* Utilise la variable verte de succès */
+  color: var(--color-text-primary); /* Utilise la couleur de texte principale */
+  border-color: var(--accent-success);
 }
 
-.btn-cancel,
-.btn-confirm {
-  padding: 8px 12px;
-  border: 1px solid white;
-  border-radius: var(--border-radius);
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
+.notification-popup.error {
+  background-color: var(
+    --accent-danger
+  ); /* Utilise la variable rouge d'erreur */
+  color: #fff; /* Texte blanc pour une meilleure lisibilité sur fond rouge */
+  border-color: var(--accent-danger);
 }
-
-.btn-cancel {
-  background: none;
-}
-
-.btn-confirm {
-  background-color: white;
-  color: var(--accent-danger);
-}
-
-@keyframes slideIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* #endregion */

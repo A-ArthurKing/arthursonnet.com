@@ -1,0 +1,30 @@
+/* client/src/components/Notification/Notification.css */
+/* #region NOTIFICATIONS */
+.notification-popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  background-color: var(--background-light);
+  color: var(--text-dark);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
+}
+
+.notification-popup.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.notification-popup.success {
+  background-color: var(--success-color);
+  color: #fff;
+  border-color: var(--success-color);
+}
+/* #endregion */
